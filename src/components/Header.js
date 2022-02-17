@@ -12,7 +12,6 @@ export default ({})=>{
     const [cep, setCep] = useState({});
 
     async function handleSearch() {
-        //55385000/json/
 
         if(input === ''){
             alert("Preencha algum CEP!")
