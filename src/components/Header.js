@@ -1,9 +1,22 @@
+import { useState } from 'react';
 import { FiSearch } from 'react-icons/fi'
 import React from 'react';
 
 import './Header.css';
 
 export default ({})=>{
+
+    const [input, setInput] = useState('')
+
+    function handleSearch() {
+        //55385000/json/
+
+        if(input ===''){
+            alert("Preencha algum CEP!")
+            return;
+        }
+    }
+
     return(
         <header>
             <div className="container">
@@ -13,9 +26,11 @@ export default ({})=>{
                     <input
                     type="text"
                     placeholder="Digite seu cep..."
+                    value={input}
+                    onChange={(event) => setInput(event.target.value) }
                     />
 
-                    <button className="buttonSearch">
+                    <button className="buttonSearch" onClick={handleSearch}>
                         <FiSearch size={25} color="#FFF"/>
                     </button>
                 </div>
