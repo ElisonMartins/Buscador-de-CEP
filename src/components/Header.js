@@ -4,17 +4,30 @@ import React from 'react';
 
 import './Header.css';
 
+import api from '../service/api.js';
+
 export default ({})=>{
 
     const [input, setInput] = useState('')
+    const [cep, setCep] = useState({});
 
-    function handleSearch() {
+    async function handleSearch() {
         //55385000/json/
 
-        if(input ===''){
+        if(input === ''){
             alert("Preencha algum CEP!")
             return;
         }
+
+        try{
+            const response = await api.get(`${input}/json`)
+            setCep(response.data)
+            setInput("")
+        }catch{
+            alert("Algum erro aconteceu!")
+            setInput("")
+        }
+
     }
 
     return(
@@ -35,13 +48,16 @@ export default ({})=>{
                     </button>
                 </div>
 
-                <main className="main">
-                    <h2>CEP: 55385-000</h2>
-                    <span>Rua Miguel Gomes da Rocha</span>
-                    <span>Complemento: Algu Complemento</span>
-                    <span>Vila Rosa</span>
-                    <span>Lajedo - PE</span>
-                </main>
+                {Object.keys(cep).length > 0 && (
+                    <main className="main">
+                        <h2>CEP: {cep.cep}</h2>
+
+                        <span>{cep.logradouro}</span>
+                        <span>{cep.bairro}</span>
+                        <span>{cep.localidade}</span>
+                        <span>{cep.localidade} - {cep.uf}</span>
+                    </main>
+                )}
             </div>
         </header>
     )
