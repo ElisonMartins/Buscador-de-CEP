@@ -1,5 +1,5 @@
 <h1> Buscador de CEP </h1>
-<p> Site para buscar o seu CEP</p>
+<p> Site para fazer buscas atraves do seu CEP.</p>
 Deploy: https://buscador-de-cep-reactjs.vercel.app/
 
 <h2> Linguagens </h2>
